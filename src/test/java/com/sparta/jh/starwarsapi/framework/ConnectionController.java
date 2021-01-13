@@ -23,9 +23,8 @@ public class ConnectionController {
         HttpClient httpClient = HttpClient.newHttpClient();
         HttpRequest httpRequest = HttpRequest.newBuilder().uri(URI.create(BASE_URL + endPoint)).build();
         int statusCode = 0;
-        HttpResponse<String> httpResponse = null;
         try {
-            httpResponse = httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString());
+            HttpResponse<String> httpResponse = httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString());
             statusCode = httpResponse.statusCode();
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
