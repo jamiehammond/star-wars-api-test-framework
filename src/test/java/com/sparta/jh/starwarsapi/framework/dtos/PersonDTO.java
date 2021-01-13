@@ -37,55 +37,38 @@ public class PersonDTO {
 
     @JsonProperty("name")
     private String name;
-
     @JsonProperty("height")
     private String height;
-
     @JsonProperty("mass")
     private String mass;
-
     @JsonProperty("hair_color")
     private String hairColor;
-
     @JsonProperty("skin_color")
     private String skinColor;
-
     @JsonProperty("eye_color")
     private String eyeColor;
-
     @JsonProperty("birth_year")
     private String birthYear;
-
     @JsonProperty("gender")
     private String gender;
-
     @JsonProperty("homeworld")
     private PlanetDTO homeworld;
-
     @JsonProperty("films")
     private List<FilmDTO> films = null;
-
     @JsonProperty("species")
     private List<SpeciesDTO> species = null;
-
     @JsonProperty("vehicles")
     private List<VehicleDTO> vehicles = null;
-
     @JsonProperty("starships")
     private List<StarshipDTO> starships = null;
-
     @JsonProperty("created")
     private String created;
-
     @JsonProperty("edited")
     private String edited;
-
     @JsonProperty("url")
     private String url;
-
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
-
     @JsonProperty("name")
     public String getName() {
         return name;
