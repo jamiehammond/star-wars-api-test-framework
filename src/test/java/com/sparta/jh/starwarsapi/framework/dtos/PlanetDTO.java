@@ -48,9 +48,9 @@ public class PlanetDTO {
     @JsonProperty("population")
     private String population;
     @JsonProperty("residents")
-    private List<PersonDTO> residents = null;
+    private List<String> residents = null;
     @JsonProperty("films")
-    private List<FilmDTO> films = null;
+    private List<String> films = null;
     @JsonProperty("created")
     private String created;
     @JsonProperty("edited")
@@ -153,22 +153,22 @@ public class PlanetDTO {
     }
 
     @JsonProperty("residents")
-    public List<PersonDTO> getResidents() {
+    public List<String> getResidents() {
         return residents;
     }
 
     @JsonProperty("residents")
-    public void setResidents(List<PersonDTO> residents) {
+    public void setResidents(List<String> residents) {
         this.residents = residents;
     }
 
     @JsonProperty("films")
-    public List<FilmDTO> getFilms() {
+    public List<String> getFilms() {
         return films;
     }
 
     @JsonProperty("films")
-    public void setFilms(List<FilmDTO> films) {
+    public void setFilms(List<String> films) {
         this.films = films;
     }
 

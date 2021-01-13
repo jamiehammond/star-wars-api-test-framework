@@ -48,13 +48,13 @@ public class SpeciesDTO {
     @JsonProperty("average_lifespan")
     private String averageLifespan;
     @JsonProperty("homeworld")
-    private PlanetDTO homeworld;
+    private String homeworld;
     @JsonProperty("language")
     private String language;
     @JsonProperty("people")
-    private List<PersonDTO> people = null;
+    private List<String> people = null;
     @JsonProperty("films")
-    private List<FilmDTO> films = null;
+    private List<String> films = null;
     @JsonProperty("created")
     private String created;
     @JsonProperty("edited")
@@ -147,12 +147,12 @@ public class SpeciesDTO {
     }
 
     @JsonProperty("homeworld")
-    public PlanetDTO getHomeworld() {
+    public String getHomeworld() {
         return homeworld;
     }
 
     @JsonProperty("homeworld")
-    public void setHomeworld(PlanetDTO homeworld) {
+    public void setHomeworld(String homeworld) {
         this.homeworld = homeworld;
     }
 
@@ -167,22 +167,22 @@ public class SpeciesDTO {
     }
 
     @JsonProperty("people")
-    public List<PersonDTO> getPeople() {
+    public List<String> getPeople() {
         return people;
     }
 
     @JsonProperty("people")
-    public void setPeople(List<PersonDTO> people) {
+    public void setPeople(List<String> people) {
         this.people = people;
     }
 
     @JsonProperty("films")
-    public List<FilmDTO> getFilms() {
+    public List<String> getFilms() {
         return films;
     }
 
     @JsonProperty("films")
-    public void setFilms(List<FilmDTO> films) {
+    public void setFilms(List<String> films) {
         this.films = films;
     }
 
