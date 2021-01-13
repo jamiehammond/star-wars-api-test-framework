@@ -60,6 +60,8 @@ public class FilmDTO {
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
+    public FilmDTO() {}
+
     @JsonProperty("title")
     public String getTitle() {
         return title;
