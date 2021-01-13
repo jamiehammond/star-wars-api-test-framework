@@ -60,9 +60,9 @@ public class StarshipDTO {
     @JsonProperty("starship_class")
     private String starshipClass;
     @JsonProperty("pilots")
-    private List<PersonDTO> pilots = null;
+    private List<String> pilots = null;
     @JsonProperty("films")
-    private List<FilmDTO> films = null;
+    private List<String> films = null;
     @JsonProperty("created")
     private String created;
     @JsonProperty("edited")
@@ -205,22 +205,22 @@ public class StarshipDTO {
     }
 
     @JsonProperty("pilots")
-    public List<PersonDTO> getPilots() {
+    public List<String> getPilots() {
         return pilots;
     }
 
     @JsonProperty("pilots")
-    public void setPilots(List<PersonDTO> pilots) {
+    public void setPilots(List<String> pilots) {
         this.pilots = pilots;
     }
 
     @JsonProperty("films")
-    public List<FilmDTO> getFilms() {
+    public List<String> getFilms() {
         return films;
     }
 
     @JsonProperty("films")
-    public void setFilms(List<FilmDTO> films) {
+    public void setFilms(List<String> films) {
         this.films = films;
     }
 

@@ -49,15 +49,15 @@ public class PersonDTO {
     @JsonProperty("gender")
     private String gender;
     @JsonProperty("homeworld")
-    private PlanetDTO homeworld;
+    private String homeworld;
     @JsonProperty("films")
-    private List<FilmDTO> films = null;
+    private List<String> films = null;
     @JsonProperty("species")
-    private List<SpeciesDTO> species = null;
+    private List<String> species = null;
     @JsonProperty("vehicles")
-    private List<VehicleDTO> vehicles = null;
+    private List<String> vehicles = null;
     @JsonProperty("starships")
-    private List<StarshipDTO> starships = null;
+    private List<String> starships = null;
     @JsonProperty("created")
     private String created;
     @JsonProperty("edited")
@@ -149,52 +149,52 @@ public class PersonDTO {
     }
 
     @JsonProperty("homeworld")
-    public PlanetDTO getHomeworld() {
+    public String getHomeworld() {
         return homeworld;
     }
 
     @JsonProperty("homeworld")
-    public void setHomeworld(PlanetDTO homeworld) {
+    public void setHomeworld(String homeworld) {
         this.homeworld = homeworld;
     }
 
     @JsonProperty("films")
-    public List<FilmDTO> getFilms() {
+    public List<String> getFilms() {
         return films;
     }
 
     @JsonProperty("films")
-    public void setFilms(List<FilmDTO> films) {
+    public void setFilms(List<String> films) {
         this.films = films;
     }
 
     @JsonProperty("species")
-    public List<SpeciesDTO> getSpecies() {
+    public List<String> getSpecies() {
         return species;
     }
 
     @JsonProperty("species")
-    public void setSpecies(List<SpeciesDTO> species) {
+    public void setSpecies(List<String> species) {
         this.species = species;
     }
 
     @JsonProperty("vehicles")
-    public List<VehicleDTO> getVehicles() {
+    public List<String> getVehicles() {
         return vehicles;
     }
 
     @JsonProperty("vehicles")
-    public void setVehicles(List<VehicleDTO> vehicles) {
+    public void setVehicles(List<String> vehicles) {
         this.vehicles = vehicles;
     }
 
     @JsonProperty("starships")
-    public List<StarshipDTO> getStarships() {
+    public List<String> getStarships() {
         return starships;
     }
 
     @JsonProperty("starships")
-    public void setStarships(List<StarshipDTO> starships) {
+    public void setStarships(List<String> starships) {
         this.starships = starships;
     }
 
