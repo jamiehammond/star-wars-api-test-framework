@@ -66,6 +66,8 @@ public class VehicleDTO {
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
+    public VehicleDTO() {}
+
     @JsonProperty("name")
     public String getName() {
         return name;

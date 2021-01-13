@@ -64,6 +64,8 @@ public class SpeciesDTO {
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
+    public SpeciesDTO() {}
+
     @JsonProperty("name")
     public String getName() {
         return name;

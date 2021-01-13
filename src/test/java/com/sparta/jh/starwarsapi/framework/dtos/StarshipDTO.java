@@ -72,6 +72,8 @@ public class StarshipDTO {
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
+    public StarshipDTO() {}
+
     @JsonProperty("name")
     public String getName() {
         return name;

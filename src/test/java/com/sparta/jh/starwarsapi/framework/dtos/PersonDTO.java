@@ -32,9 +32,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 })
 public class PersonDTO {
 
-    public PersonDTO() {
-    }
-
     @JsonProperty("name")
     private String name;
     @JsonProperty("height")
@@ -73,6 +70,8 @@ public class PersonDTO {
     public String getName() {
         return name;
     }
+
+    public PersonDTO() {}
 
     @JsonProperty("name")
     public void setName(String name) {

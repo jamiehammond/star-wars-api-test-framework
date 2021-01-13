@@ -60,6 +60,8 @@ public class PlanetDTO {
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
+    public PlanetDTO() {}
+
     @JsonProperty("name")
     public String getName() {
         return name;
