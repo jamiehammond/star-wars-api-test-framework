@@ -1,4 +1,4 @@
 package com.sparta.jh.starwarsapi.framework.dtos;
 
-public class PeopleDTO {
+public class SpeciesDTO {
 }
