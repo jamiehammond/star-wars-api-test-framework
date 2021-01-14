@@ -30,7 +30,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
         "edited",
         "url"
 })
-public class PersonDTO {
+public class PersonDTO extends StarWarsDTO {
 
     @JsonProperty("name")
     private String name;

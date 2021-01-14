@@ -27,7 +27,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
         "edited",
         "url"
 })
-public class FilmDTO {
+public class FilmDTO extends StarWarsDTO {
 
     @JsonProperty("title")
     private String title;
@@ -51,6 +51,7 @@ public class FilmDTO {
     private List<String> vehicles = null;
     @JsonProperty("species")
     private List<String> species = null;
+
     @JsonProperty("created")
     private String created;
     @JsonProperty("edited")
