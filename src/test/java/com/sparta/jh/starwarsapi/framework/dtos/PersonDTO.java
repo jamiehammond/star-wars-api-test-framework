@@ -244,6 +244,60 @@ public class PersonDTO extends StarWarsDTO {
         this.additionalProperties.put(name, value);
     }
 
+    public boolean hasName() {
+        return name.getClass() == String.class;
+    }
+
+    public boolean hasHeight() {
+        return height.getClass() == String.class;
+    }
+
+    public boolean hasMass() {
+        return mass.getClass() == String.class;
+    }
+
+    public boolean hasHairColor() {
+        return hairColor.getClass() == String.class;
+    }
+
+    public boolean hasSkinColor() {
+        return skinColor.getClass() == String.class;
+    }
+
+    public boolean hasEyeColor() {
+        return eyeColor.getClass() == String.class;
+    }
+
+    public boolean hasBirthYear() {
+        return birthYear.getClass() == String.class;
+    }
+
+    public boolean hasGender() {
+        return gender.getClass() == String.class;
+    }
+
+    public boolean hasHomeworld() {
+        return homeworld.getClass() == String.class;
+    }
+
+    public boolean hasCreated() {
+        return created.getClass() == String.class;
+    }
+
+    public boolean hasEdited() {
+        return edited.getClass() == String.class;
+    }
+
+    public boolean hasURL() {
+        return URL.getClass() == String.class;
+    }
+
+    public PlanetDTO getHomeworldAsDTO() {
+        String replacedURL = homeworld.replace("http", "https");
+        APIConnection connection = APIConnectionController.getConnection(replacedURL);
+        return (PlanetDTO) Injector.injectDTO(connection);
+    }
+
     public ArrayList<FilmDTO> getFilmsAsDTOs() {
         ArrayList<FilmDTO> DTOList = new ArrayList<>();
         for (String URL : films) {
@@ -287,4 +341,26 @@ public class PersonDTO extends StarWarsDTO {
         }
         return DTOList;
     }
+
+
+    public String[] getNames() {
+        return name.split(" ");
+    }
+
+    public String getFirstName() {
+        return getNames()[0];
+    }
+
+    public String getLastName() {
+        String[] names = getNames();
+        return names[names.length-1];
+    }
+
+    public int getHeightAsInt() {
+        if (height == null || height.equals("")) {
+            System.err.println("Height is null or empty. Returning 0.");
+        }
+        return Integer.parseInt(height);
+    }
+
 }
