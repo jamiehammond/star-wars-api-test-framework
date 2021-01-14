@@ -10,7 +10,7 @@
 
   <name>star-wars-api-test-framework</name>
   <!-- FIXME change it to the project's website -->
-  <url>http://www.example.com</url>
+  <URL>http://www.example.com</URL>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
