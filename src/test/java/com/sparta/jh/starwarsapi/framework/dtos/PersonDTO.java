@@ -1,5 +1,6 @@
 package com.sparta.jh.starwarsapi.framework.dtos;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,6 +11,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.sparta.jh.starwarsapi.framework.connection.APIConnection;
+import com.sparta.jh.starwarsapi.framework.connection.APIConnectionController;
+import com.sparta.jh.starwarsapi.framework.injection.Injector;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
@@ -66,12 +70,14 @@ public class PersonDTO extends StarWarsDTO {
     private String URL;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+
     @JsonProperty("name")
     public String getName() {
         return name;
     }
 
-    public PersonDTO() {}
+    public PersonDTO() {
+    }
 
     @JsonProperty("name")
     public void setName(String name) {
@@ -236,6 +242,125 @@ public class PersonDTO extends StarWarsDTO {
     @JsonAnySetter
     public void setAdditionalProperty(String name, Object value) {
         this.additionalProperties.put(name, value);
+    }
+
+    public boolean hasName() {
+        return name.getClass() == String.class;
+    }
+
+    public boolean hasHeight() {
+        return height.getClass() == String.class;
+    }
+
+    public boolean hasMass() {
+        return mass.getClass() == String.class;
+    }
+
+    public boolean hasHairColor() {
+        return hairColor.getClass() == String.class;
+    }
+
+    public boolean hasSkinColor() {
+        return skinColor.getClass() == String.class;
+    }
+
+    public boolean hasEyeColor() {
+        return eyeColor.getClass() == String.class;
+    }
+
+    public boolean hasBirthYear() {
+        return birthYear.getClass() == String.class;
+    }
+
+    public boolean hasGender() {
+        return gender.getClass() == String.class;
+    }
+
+    public boolean hasHomeworld() {
+        return homeworld.getClass() == String.class;
+    }
+
+    public boolean hasCreated() {
+        return created.getClass() == String.class;
+    }
+
+    public boolean hasEdited() {
+        return edited.getClass() == String.class;
+    }
+
+    public boolean hasURL() {
+        return URL.getClass() == String.class;
+    }
+
+    public PlanetDTO getHomeworldAsDTO() {
+        String replacedURL = homeworld.replace("http", "https");
+        APIConnection connection = APIConnectionController.getConnection(replacedURL);
+        return (PlanetDTO) Injector.injectDTO(connection);
+    }
+
+    public ArrayList<FilmDTO> getFilmsAsDTOs() {
+        ArrayList<FilmDTO> DTOList = new ArrayList<>();
+        for (String URL : films) {
+            String replacedURL = URL.replace("http", "https");
+            APIConnection connection = APIConnectionController.getConnection(replacedURL);
+            FilmDTO currentFilm = (FilmDTO) Injector.injectDTO(connection);
+            DTOList.add(currentFilm);
+        }
+        return DTOList;
+    }
+
+    public ArrayList<SpeciesDTO> getSpeciesAsDTOs() {
+        ArrayList<SpeciesDTO> DTOList = new ArrayList<>();
+        for (String URL : species) {
+            String replacedURL = URL.replace("http", "https");
+            APIConnection connection = APIConnectionController.getConnection(replacedURL);
+            SpeciesDTO currentSpecies = (SpeciesDTO) Injector.injectDTO(connection);
+            DTOList.add(currentSpecies);
+        }
+        return DTOList;
+    }
+
+    public ArrayList<VehicleDTO> getVehiclesAsDTOs() {
+        ArrayList<VehicleDTO> DTOList = new ArrayList<>();
+        for (String URL : vehicles) {
+            String replacedURL = URL.replace("http", "https");
+            APIConnection connection = APIConnectionController.getConnection(replacedURL);
+            VehicleDTO currentVehicle = (VehicleDTO) Injector.injectDTO(connection);
+            DTOList.add(currentVehicle);
+        }
+        return DTOList;
+    }
+
+    public ArrayList<StarshipDTO> getStarshipsAsDTOs() {
+        ArrayList<StarshipDTO> DTOList = new ArrayList<>();
+        for (String URL : starships) {
+            String replacedURL = URL.replace("http", "https");
+            APIConnection connection = APIConnectionController.getConnection(replacedURL);
+            StarshipDTO currentStarship = (StarshipDTO) Injector.injectDTO(connection);
+            DTOList.add(currentStarship);
+        }
+        return DTOList;
+    }
+
+
+    public String[] getNames() {
+        return name.split(" ");
+    }
+
+    public String getFirstName() {
+        return getNames()[0];
+    }
+
+    public String getLastName() {
+        String[] names = getNames();
+        return names[names.length-1];
+    }
+
+    public int getHeightAsInt() {
+        if (height == null || height.equals("")) {
+            System.err.println("Height is null or empty. Returning 0.");
+        }
+        return Integer.parseInt(height);
     }
 
 }
