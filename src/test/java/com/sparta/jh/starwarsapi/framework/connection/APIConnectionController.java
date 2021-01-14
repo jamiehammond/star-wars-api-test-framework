@@ -19,6 +19,19 @@ public class APIConnectionController {
         return connection;
     }
 
+    public static APIConnection getConnection(String URL) {
+        if (URL == null) {
+            System.err.println("Null URL provided - Returning null.");
+            return null;
+        }
+        APIConnection connection = new APIConnection(URL);
+        if (connection.getStatusCode() != 200) {
+            System.err.println("Connection failed - HTTP Status code: " + connection.getStatusCode());
+            return null;
+        }
+        return connection;
+    }
+
     private static String URLBuilder(Resources resource, int resourceID) {
         return BASE_URL + resource.getResourceName() + "/" + resourceID + "/";
     }

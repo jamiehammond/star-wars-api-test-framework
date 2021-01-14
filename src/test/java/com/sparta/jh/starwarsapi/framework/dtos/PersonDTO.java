@@ -1,5 +1,6 @@
 package com.sparta.jh.starwarsapi.framework.dtos;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,6 +11,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.sparta.jh.starwarsapi.framework.connection.APIConnection;
+import com.sparta.jh.starwarsapi.framework.connection.APIConnectionController;
+import com.sparta.jh.starwarsapi.framework.injection.Injector;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
@@ -66,12 +70,14 @@ public class PersonDTO extends StarWarsDTO {
     private String URL;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+
     @JsonProperty("name")
     public String getName() {
         return name;
     }
 
-    public PersonDTO() {}
+    public PersonDTO() {
+    }
 
     @JsonProperty("name")
     public void setName(String name) {
@@ -238,4 +244,47 @@ public class PersonDTO extends StarWarsDTO {
         this.additionalProperties.put(name, value);
     }
 
+    public ArrayList<FilmDTO> getFilmsAsDTOs() {
+        ArrayList<FilmDTO> DTOList = new ArrayList<>();
+        for (String URL : films) {
+            String replacedURL = URL.replace("http", "https");
+            APIConnection connection = APIConnectionController.getConnection(replacedURL);
+            FilmDTO currentFilm = (FilmDTO) Injector.injectDTO(connection);
+            DTOList.add(currentFilm);
+        }
+        return DTOList;
+    }
+
+    public ArrayList<SpeciesDTO> getSpeciesAsDTOs() {
+        ArrayList<SpeciesDTO> DTOList = new ArrayList<>();
+        for (String URL : species) {
+            String replacedURL = URL.replace("http", "https");
+            APIConnection connection = APIConnectionController.getConnection(replacedURL);
+            SpeciesDTO currentSpecies = (SpeciesDTO) Injector.injectDTO(connection);
+            DTOList.add(currentSpecies);
+        }
+        return DTOList;
+    }
+
+    public ArrayList<VehicleDTO> getVehiclesAsDTOs() {
+        ArrayList<VehicleDTO> DTOList = new ArrayList<>();
+        for (String URL : vehicles) {
+            String replacedURL = URL.replace("http", "https");
+            APIConnection connection = APIConnectionController.getConnection(replacedURL);
+            VehicleDTO currentVehicle = (VehicleDTO) Injector.injectDTO(connection);
+            DTOList.add(currentVehicle);
+        }
+        return DTOList;
+    }
+
+    public ArrayList<StarshipDTO> getStarshipsAsDTOs() {
+        ArrayList<StarshipDTO> DTOList = new ArrayList<>();
+        for (String URL : starships) {
+            String replacedURL = URL.replace("http", "https");
+            APIConnection connection = APIConnectionController.getConnection(replacedURL);
+            StarshipDTO currentStarship = (StarshipDTO) Injector.injectDTO(connection);
+            DTOList.add(currentStarship);
+        }
+        return DTOList;
+    }
 }

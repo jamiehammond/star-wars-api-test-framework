@@ -16,7 +16,7 @@ public class Injector {
             System.err.println("Null connection provided. Returning null.");
             return null;
         }
-        StarWarsDTO starWarsDTO = DTOFactory.StarWarsDTOFactory(connection.getURL());
+        StarWarsDTO starWarsDTO = DTOFactory.starWarsDTOFactory(connection.getURL());
         if (starWarsDTO == null) {
             System.err.println("Failed to create DTO from connection provided. Returning null.");
             return null;

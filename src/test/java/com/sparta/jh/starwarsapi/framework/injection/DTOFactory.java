@@ -1,13 +1,18 @@
 package com.sparta.jh.starwarsapi.framework.injection;
 
+import com.sparta.jh.starwarsapi.framework.connection.APIConnection;
+import com.sparta.jh.starwarsapi.framework.connection.APIConnectionController;
 import com.sparta.jh.starwarsapi.framework.dtos.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class DTOFactory {
 
     private static final String BASE_REGEX = "https://swapi\\.dev/api/";
     private static final String END_REGEX = "/0*\\d{1,2}/?";
 
-    public static StarWarsDTO StarWarsDTOFactory(String URL) {
+    public static StarWarsDTO starWarsDTOFactory(String URL) {
         if (URL.matches(BASE_REGEX + "people" + END_REGEX)) {
             return new PersonDTO();
         }
