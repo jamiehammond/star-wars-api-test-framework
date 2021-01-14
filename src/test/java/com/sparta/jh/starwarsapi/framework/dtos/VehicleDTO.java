@@ -27,7 +27,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
         "films",
         "created",
         "edited",
-        "url"
+        "URL"
 })
 public class VehicleDTO extends StarWarsDTO {
 
@@ -61,8 +61,8 @@ public class VehicleDTO extends StarWarsDTO {
     private String created;
     @JsonProperty("edited")
     private String edited;
-    @JsonProperty("url")
-    private String url;
+    @JsonProperty("URL")
+    private String URL;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
@@ -218,14 +218,14 @@ public class VehicleDTO extends StarWarsDTO {
         this.edited = edited;
     }
 
-    @JsonProperty("url")
-    public String getUrl() {
-        return url;
+    @JsonProperty("URL")
+    public String getURL() {
+        return URL;
     }
 
-    @JsonProperty("url")
-    public void setUrl(String url) {
-        this.url = url;
+    @JsonProperty("URL")
+    public void setURL(String URL) {
+        this.URL = URL;
     }
 
     @JsonAnyGetter

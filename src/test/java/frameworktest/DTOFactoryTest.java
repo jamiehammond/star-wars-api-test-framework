@@ -10,7 +10,7 @@ class DTOFactoryTest {
 
     @Test
     @DisplayName("Person URL returns personDTO")
-    void personUrlReturnsPersonDto() {
+    void personURLReturnsPersonDTO() {
         PersonDTO luke = (PersonDTO) DTOFactory.StarWarsDTOFactory("https://swapi.dev/api/people/1/");
         Assertions.assertNotNull(luke);
     }

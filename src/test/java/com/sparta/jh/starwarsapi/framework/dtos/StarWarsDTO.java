@@ -12,8 +12,8 @@ public abstract class StarWarsDTO {
     private String created;
     @JsonProperty("edited")
     private String edited;
-    @JsonProperty("url")
-    private String url;
+    @JsonProperty("URL")
+    private String URL;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
@@ -35,12 +35,12 @@ public abstract class StarWarsDTO {
         this.edited = edited;
     }
 
-    public String getUrl() {
-        return url;
+    public String getURL() {
+        return URL;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setURL(String URL) {
+        this.URL = URL;
     }
 
     public Map<String, Object> getAdditionalProperties() {
