@@ -11,19 +11,19 @@ public class DTOFactory {
         if (URL.matches(BASE_REGEX + "people" + END_REGEX)) {
             return new PersonDTO();
         }
-        else if (URL.startsWith(BASE_REGEX + "films" + END_REGEX)) {
+        else if (URL.matches(BASE_REGEX + "films" + END_REGEX)) {
             return new FilmDTO();
         }
-        else if (URL.startsWith(BASE_REGEX + "starships" + END_REGEX)) {
+        else if (URL.matches(BASE_REGEX + "starships" + END_REGEX)) {
             return new StarshipDTO();
         }
-        else if (URL.startsWith(BASE_REGEX + "vehicles" + END_REGEX)) {
+        else if (URL.matches(BASE_REGEX + "vehicles" + END_REGEX)) {
             return new VehicleDTO();
         }
-        else if (URL.startsWith(BASE_REGEX + "species" + END_REGEX)) {
+        else if (URL.matches(BASE_REGEX + "species" + END_REGEX)) {
             return new SpeciesDTO();
         }
-        else if (URL.startsWith(BASE_REGEX + "planets" + END_REGEX)) {
+        else if (URL.matches(BASE_REGEX + "planets" + END_REGEX)) {
             return new PlanetDTO();
         }
         else {
