@@ -7,12 +7,35 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.fail;
+
 class APIConnectionControllerTest {
 
     @Test
     @DisplayName("getConnection returns a connection")
     void getConnectionReturnsAConnection() {
-        APIConnection APIConnection = APIConnectionController.getConnection(Resources.PERSON, 1);
-        Assertions.assertNotNull(APIConnection);
+        APIConnection person1Connection = APIConnectionController.getConnection(Resources.PERSON, 1);
+        Assertions.assertNotNull(person1Connection);
+    }
+
+    @Test
+    @DisplayName("getConnection returns a connection when ID has leading zeroes")
+    void getConnectionReturnsAConnectionWhenIDHasLeadingZeroes() {
+        APIConnection person1Connection = APIConnectionController.getConnection(Resources.PERSON, 00001);
+        Assertions.assertNotNull(person1Connection);
+    }
+
+    @Test
+    @DisplayName("getConnection returns null when invalid resourceID provided")
+    void getConnectionReturnsNullWhenInvalidResourceIdProvided() {
+        APIConnection connection = APIConnectionController.getConnection(Resources.PERSON, 100);
+        Assertions.assertNull(connection);
+    }
+
+    @Test
+    @DisplayName("getConnection returns null when null resources provided")
+    void getConnectionReturnsNullWhenNullResourcesProvided() {
+        APIConnection connection = APIConnectionController.getConnection(null, 1);
+        Assertions.assertNull(connection);
     }
 }
