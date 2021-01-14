@@ -1,6 +1,6 @@
 package frameworktest;
 
-import com.sparta.jh.starwarsapi.framework.ConnectionController;
+import com.sparta.jh.starwarsapi.framework.connection.ConnectionController;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

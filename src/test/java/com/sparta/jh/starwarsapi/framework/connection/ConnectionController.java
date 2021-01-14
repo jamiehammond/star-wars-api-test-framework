@@ -1,4 +1,4 @@
-package com.sparta.jh.starwarsapi.framework;
+package com.sparta.jh.starwarsapi.framework.connection;
 
 import java.io.IOException;
 import java.net.URI;
