@@ -60,6 +60,13 @@ class DTOFactoryTest {
     }
 
     @Test
+    @DisplayName("Invalid URL returns null")
+    void invalidUrlReturnsNull() {
+        FilmDTO invalidFilm = (FilmDTO) DTOFactory.StarWarsDTOFactory("www.google.com");
+        Assertions.assertNull(invalidFilm);
+    }
+
+    @Test
     @DisplayName("Invalid resource URL returns null")
     void invalidResourceUrlReturnsNull() {
         FilmDTO invalidFilm = (FilmDTO) DTOFactory.StarWarsDTOFactory("https://swapi.dev/api/lightsabers/1/");
