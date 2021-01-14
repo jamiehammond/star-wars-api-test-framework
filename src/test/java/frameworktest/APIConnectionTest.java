@@ -12,19 +12,17 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 class APIConnectionTest {
 
-    private static APIConnection goodConnection;
-    private static APIConnection badConnection;
+    private static APIConnection person1Connection;
 
     @BeforeAll
     static void setup() {
-        goodConnection = APIConnectionController.getConnection(Resources.PERSON, 1);
-        badConnection = null;
+        person1Connection = APIConnectionController.getConnection(Resources.PERSON, 1);
     }
 
     @Test
     @DisplayName("getStatusCode returns valid http status code")
     void getStatusCodeReturnsValidHttpStatusCode() {
-        int statusCode = goodConnection.getStatusCode();
+        int statusCode = person1Connection.getStatusCode();
         Assertions.assertTrue((statusCode >= 100 && statusCode <= 103) ||
                 (statusCode >= 200 && statusCode <= 226) ||
                 (statusCode >= 300 && statusCode <= 308) ||
@@ -35,6 +33,6 @@ class APIConnectionTest {
     @Test
     @DisplayName("getURL returns correct url")
     void getUrlReturnsValidUrl() {
-        Assertions.assertEquals("https://swapi.dev/api/people/1/", goodConnection.getURL());
+        Assertions.assertEquals("https://swapi.dev/api/people/1/", person1Connection.getURL());
     }
 }
