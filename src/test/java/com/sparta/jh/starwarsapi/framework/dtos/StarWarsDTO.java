@@ -12,7 +12,7 @@ public abstract class StarWarsDTO {
     private String created;
     @JsonProperty("edited")
     private String edited;
-    @JsonProperty("URL")
+    @JsonProperty("url")
     private String URL;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();

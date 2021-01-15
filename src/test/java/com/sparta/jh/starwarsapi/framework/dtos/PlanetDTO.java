@@ -55,7 +55,7 @@ public class PlanetDTO extends StarWarsDTO {
     private String created;
     @JsonProperty("edited")
     private String edited;
-    @JsonProperty("URL")
+    @JsonProperty("url")
     private String URL;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
@@ -192,12 +192,12 @@ public class PlanetDTO extends StarWarsDTO {
         this.edited = edited;
     }
 
-    @JsonProperty("URL")
+    @JsonProperty("url")
     public String getURL() {
         return URL;
     }
 
-    @JsonProperty("URL")
+    @JsonProperty("url")
     public void setURL(String URL) {
         this.URL = URL;
     }

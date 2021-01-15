@@ -3,6 +3,7 @@ package com.sparta.jh.starwarsapi.framework.connection;
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
+import java.net.http.HttpHeaders;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
@@ -27,6 +28,10 @@ public class APIConnection {
 
     public int getStatusCode() {
         return httpResponse.statusCode();
+    }
+
+    public HttpHeaders getHeaders() {
+        return httpResponse.headers();
     }
 
     public String getURL() {
