@@ -1,5 +1,6 @@
 package com.sparta.jh.starwarsapi.framework.dtos;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -11,6 +12,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sparta.jh.starwarsapi.framework.connection.APIConnection;
 import com.sparta.jh.starwarsapi.framework.connection.APIConnectionController;
 import com.sparta.jh.starwarsapi.framework.injection.Injector;
@@ -66,7 +69,7 @@ public class PersonDTO extends StarWarsDTO {
     private String created;
     @JsonProperty("edited")
     private String edited;
-    @JsonProperty("URL")
+    @JsonProperty("url")
     private String URL;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
@@ -224,12 +227,12 @@ public class PersonDTO extends StarWarsDTO {
         this.edited = edited;
     }
 
-    @JsonProperty("URL")
+    @JsonProperty("url")
     public String getURL() {
         return URL;
     }
 
-    @JsonProperty("URL")
+    @JsonProperty("url")
     public void setURL(String URL) {
         this.URL = URL;
     }
@@ -344,6 +347,10 @@ public class PersonDTO extends StarWarsDTO {
 
 
     public String[] getNames() {
+        if (isNullOrEmpty(name)) {
+            System.err.println("Name is null or empty. Returning null.");
+            return null;
+        }
         return name.split(" ");
     }
 
@@ -356,11 +363,116 @@ public class PersonDTO extends StarWarsDTO {
         return names[names.length-1];
     }
 
-    public int getHeightAsInt() {
-        if (height == null || height.equals("")) {
-            System.err.println("Height is null or empty. Returning 0.");
+    public boolean isNullOrEmpty(String string) {
+        if (string == null || string.equals("")) {
+            return true;
         }
-        return Integer.parseInt(height);
+        return false;
     }
 
+    public JsonNode getJson() {
+        String replacedURL = URL.replace("http", "https");
+        APIConnection connection = APIConnectionController.getConnection(replacedURL);
+        ObjectMapper objectMapper = new ObjectMapper();
+        return objectMapper.valueToTree(connection.getHttpResponse().body());
+    }
+
+    public String toString() {
+        return getJson().asText();
+    }
+
+    public ArrayList<String> getNullOrEmptyFields() {
+        ArrayList<String> nullOrEmptyFields = new ArrayList<>();
+        if (isNullOrEmpty(name)) {
+            nullOrEmptyFields.add("name");
+        }
+        if (isNullOrEmpty(height)) {
+            nullOrEmptyFields.add("height");
+        }
+        if (isNullOrEmpty(mass)) {
+            nullOrEmptyFields.add("mass");
+        }
+        if (isNullOrEmpty(hairColor)) {
+            nullOrEmptyFields.add("hairColor");
+        }
+        if (isNullOrEmpty(skinColor)) {
+            nullOrEmptyFields.add("skinColor");
+        }
+        if (isNullOrEmpty(eyeColor)) {
+            nullOrEmptyFields.add("eyeColor");
+        }
+        if (isNullOrEmpty(birthYear)) {
+            nullOrEmptyFields.add("birthYear");
+        }
+        if (isNullOrEmpty(gender)) {
+            nullOrEmptyFields.add("gender");
+        }
+        if (isNullOrEmpty(homeworld)) {
+            nullOrEmptyFields.add("homeworld");
+        }
+        if (films.size() == 0) {
+            nullOrEmptyFields.add("films");
+        }
+        if (species.size() == 0) {
+            nullOrEmptyFields.add("species");
+        }
+        if (vehicles.size() == 0) {
+            nullOrEmptyFields.add("vehicles");
+        }
+        if (starships.size() == 0) {
+            nullOrEmptyFields.add("starships");
+        }
+        if (isNullOrEmpty(created)) {
+            nullOrEmptyFields.add("created");
+        }
+        if (isNullOrEmpty(edited)) {
+            nullOrEmptyFields.add("edited");
+        }
+        if (isNullOrEmpty(URL)) {
+            nullOrEmptyFields.add("URL");
+        }
+        return nullOrEmptyFields;
+    }
+
+    public boolean hasNullOrEmptyFields() {
+        return getNullOrEmptyFields().size() > 0;
+    }
+
+    public int getHeightAsInt() {
+        if (isNullOrEmpty(height)) {
+            System.err.println("Height is null or empty. Returning -1..");
+            return -1;
+        }
+        try {
+            return Integer.parseInt(height);
+        } catch (NumberFormatException e) {
+            System.err.println("Height is not in integer format. Returning -1.");
+            e.printStackTrace();
+            return -1;
+        }
+    }
+
+    public int getMassAsInt() {
+        if (isNullOrEmpty(mass)) {
+            System.err.println("Mass is null or empty. Returning -1.");
+            return -1;
+        }
+        try {
+            return Integer.parseInt(mass);
+        } catch (NumberFormatException e) {
+            System.err.println("Mass is not in integer format. Returning -1.");
+            e.printStackTrace();
+            return -1;
+        }
+    }
+
+    public boolean isHeightInRange(int min, int max) {
+        int height = getHeightAsInt();
+        return height >= min && height <= max;
+    }
+
+    public boolean isMassInRange(int min, int max) {
+        int mass = getMassAsInt();
+        return mass >= min && mass <= max;
+    }
 }

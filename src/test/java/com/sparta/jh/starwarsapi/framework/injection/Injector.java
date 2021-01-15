@@ -3,6 +3,7 @@ package com.sparta.jh.starwarsapi.framework.injection;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sparta.jh.starwarsapi.framework.connection.APIConnection;
+import com.sparta.jh.starwarsapi.framework.dtos.PeopleDTO;
 import com.sparta.jh.starwarsapi.framework.dtos.StarWarsDTO;
 
 import java.net.http.HttpClient;
@@ -32,5 +33,24 @@ public class Injector {
             e.printStackTrace();
         }
         return starWarsDTO;
+    }
+
+    public static PeopleDTO injectPeopleDTO(APIConnection connection) {
+        if (connection == null) {
+            System.err.println("Null connection provided. Returning null.");
+            return null;
+        }
+        PeopleDTO peopleDTO = new PeopleDTO();
+        String URL = connection.getURL();
+        ObjectMapper objectMapper = new ObjectMapper();
+        HttpClient httpClient = connection.getHttpClient();
+        HttpRequest httpRequest = connection.getHttpRequest();
+        HttpResponse<String> httpResponse = connection.getHttpResponse();
+        try {
+            peopleDTO = objectMapper.readValue(httpResponse.body(), peopleDTO.getClass());
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return peopleDTO;
     }
 }
